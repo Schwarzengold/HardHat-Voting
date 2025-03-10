@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Voting Event</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.8.2/web3.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+  <script defer src="app.js"></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+    .container {
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+    h1 {
+      font-size: 26px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    button {
+      cursor: pointer;
+      font-weight: bold;
+      color: white;
+      transition: 0.3s;
+    }
+    .btn-primary { background: #007bff; }
+    .btn-primary:hover { background: #0056b3; }
+    .btn-success { background: #28a745; }
+    .btn-success:hover { background: #1e7e34; }
+    .btn-warning { background: #ffc107; color: black; }
+    .btn-warning:hover { background: #e0a800; }
+    .btn-danger { background: #dc3545; }
+    .btn-danger:hover { background: #c82333; }
+    .candidate-card {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 8px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Voting Event</h1>
+
+    <div class="card">
+      <h3>Add Candidate</h3>
+      <input type="text" id="candidateName" class="form-control" placeholder="Candidate name" />
+      <button class="btn btn-primary mt-2" onclick="addCandidate()">Add Candidate (0.01 ETH)</button>
+    </div>
+
+    <div id="voteSection">
+      <div class="card">
+        <h3>Vote</h3>
+        <select id="candidatesList" class="form-control"></select>
+        <button class="btn btn-success mt-2" onclick="vote()">Vote</button>
+      </div>
+    </div>
+
+    <div class="card" id="candidatesOutput">
+      <h3>Candidate List</h3>
+    </div>
+
+    <div class="card">
+      <h3>Determine Winner</h3>
+      <button class="btn btn-warning" onclick="getWinner()">Show Winner</button>
+    </div>
+
+    <div class="card">
+      <h3>Reset Election</h3>
+      <button class="btn btn-danger" onclick="resetElection()">Reset Election</button>
+    </div>
+  </div>
+
+  <div id="toastContainer" class="position-fixed" style="top: 20px; left: 20px; z-index: 1050;"></div>
+</body>
+</html>
